@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PictureFiltering"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Picture Filtering" Height="720" Width="1080"
+        WindowStartupLocation="Manual"
+        Left="0"
+        Top="0"
+        Name="mainWindow">
     <Grid>
-        
+        <Menu HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="169">
+            <MenuItem Header="Open" Click="Open_Picture" ></MenuItem>
+            <MenuItem Header="Save" Click="Save_Picture"></MenuItem>
+            <MenuItem Header="Filter Options"></MenuItem>
+        </Menu>
+        <Image Name="SourcePic" HorizontalAlignment="Left" Height="316" Margin="10,135,0,0" VerticalAlignment="Top" Width="515"/>
+        <Image Name="FilteredPic" HorizontalAlignment="Left" Height="316" Margin="547,135,0,0" VerticalAlignment="Top" Width="515"/>
+
     </Grid>
 </Window>
