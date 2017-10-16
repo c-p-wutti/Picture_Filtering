@@ -1,19 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PictureFiltering
 {
@@ -45,27 +34,13 @@ namespace PictureFiltering
         private void Open_Picture(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Opening Picture!");
-            //Stream picStream = null;
-            OpenFileDialog dialog = new OpenFileDialog();
-
-            dialog.Filter = "Image Files(*.bmp;*.jpg;)| *.BMP;*.JPG;";
-
-            if (dialog.ShowDialog() == true)
-            {
-                Console.WriteLine("wohoo: " + dialog.FileName);
-
-                BitmapImage pic = new BitmapImage();
-                pic.BeginInit();
-                pic.UriSource = new Uri(dialog.FileName);
-                pic.EndInit();
-
-                SourcePic.Source = pic;
-            }
+            SourcePic.Source = FileHelper.getBitmapSourceFromBitmap(FileHelper.getImage());
         }
         
         private void Save_Picture(object sender, RoutedEventArgs e)
         {
-
+            Console.WriteLine("Saving Picture!");
+            FileHelper.saveImage(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source));
         }
     }
 }
