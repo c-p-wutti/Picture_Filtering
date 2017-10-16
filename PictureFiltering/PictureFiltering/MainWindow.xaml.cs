@@ -40,7 +40,21 @@ namespace PictureFiltering
         private void Save_Picture(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Saving Picture!");
-            FileHelper.saveImage(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source));
+            FileHelper.saveImage(FileHelper.getBitmapFromBitmapSource((BitmapSource)FilteredPic.Source));
+        }
+
+        private void Filter_Red(object sender, RoutedEventArgs e)
+        {
+            FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterRed(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
+        }
+
+        private void Filter_Green(object sender, RoutedEventArgs e)
+        {
+            FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterGreen(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
+        }
+        private void Filter_Blue(object sender, RoutedEventArgs e)
+        {
+            FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterBlue(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
     }
 }

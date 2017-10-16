@@ -14,7 +14,12 @@
         <Menu HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="169">
             <MenuItem Header="Open" Click="Open_Picture" ></MenuItem>
             <MenuItem Header="Save" Click="Save_Picture"></MenuItem>
-            <MenuItem Header="Filter Options"></MenuItem>
+            <MenuItem Header="Filter Options">
+                <MenuItem Header="Red" Click="Filter_Red"></MenuItem>
+                <MenuItem Header="Green" Click="Filter_Green"></MenuItem>
+                <MenuItem Header="Blue" Click="Filter_Blue"></MenuItem>
+            </MenuItem>
+            
         </Menu>
         <Image Name="SourcePic" HorizontalAlignment="Left" Height="316" Margin="10,135,0,0" VerticalAlignment="Top" Width="515"/>
         <Image Name="FilteredPic" HorizontalAlignment="Left" Height="316" Margin="547,135,0,0" VerticalAlignment="Top" Width="515"/>
