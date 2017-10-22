@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,6 @@ namespace PictureFiltering
 {
     class FilterHelper
     {
-        public static ProgressBar ProgressBar { get; set; }
-
         public static Bitmap filterRed(Bitmap pic)
         {
             Bitmap bmp = null;
@@ -21,10 +20,11 @@ namespace PictureFiltering
             {
                 for (var x = 0; x < pic.Width; x++)
                 {
-                        System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb( (byte)((int)pic.GetPixel(x, y).R + 50), pic.GetPixel(x,y).B, pic.GetPixel(x, y).G);
-                        pic.SetPixel(x, y, Color.FromArgb(color.A, color.R, color.G,color.B));    
+                        System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb( pic.GetPixel(x,y).R, 0, 0);
+                        pic.SetPixel(x, y, Color.FromArgb(color.A, color.R, color.G,color.B));
+                        
                 }
-            }
+             }
 
             bmp = pic;
             return bmp;
@@ -38,10 +38,10 @@ namespace PictureFiltering
             {
                 for (var x = 0; x < pic.Width; x++)
                 {
-                    System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(pic.GetPixel(x,y).R, pic.GetPixel(x, y).B, (byte)((int)pic.GetPixel(x, y).G + 50));
+                    System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(0, 0, pic.GetPixel(x,y).G);
                     pic.SetPixel(x, y, Color.FromArgb(color.A, color.R, color.G, color.B));
                 }
-            }
+           }
 
             bmp = pic;
             return bmp;
@@ -54,10 +54,10 @@ namespace PictureFiltering
             {
                 for (var x = 0; x < pic.Width; x++)
                 {
-                    System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(pic.GetPixel(x,y).R, (byte)((int)pic.GetPixel(x, y).B + 50), pic.GetPixel(x, y).G);
+                    System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(0, pic.GetPixel(x,y).B, 0);
                     pic.SetPixel(x, y, Color.FromArgb(color.A, color.R, color.G, color.B));
                 }
-            }
+           }
 
             bmp = pic;
             return bmp;

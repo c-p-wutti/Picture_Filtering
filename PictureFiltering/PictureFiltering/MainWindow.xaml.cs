@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -21,19 +22,26 @@ namespace PictureFiltering
         }
 
         BackgroundWorker bw;
-
+        Bitmap map;
         private void initOtherComponents()
         {
             setBackgroundColor();
-            FilterHelper.ProgressBar = progressbar;
             bw = new BackgroundWorker();
             bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_workerCompleted);
+
+        }
+
+        private void bw_workerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+           
         }
 
         private void setBackgroundColor()
         {
             BrushConverter bc = new BrushConverter();
-            Brush brush = (Brush)bc.ConvertFrom("#012D41");
+            System.Windows.Media.Brush brush = (System.Windows.Media.Brush)bc.ConvertFrom("#012D41");
             brush.Freeze();
             mainWindow.Background = brush;
         }
@@ -52,28 +60,30 @@ namespace PictureFiltering
 
         private void Filter_Red(object sender, RoutedEventArgs e)
         {
-            bw.RunWorkerAsync();
+            //bw.RunWorkerAsync();
             FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterRed(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
 
         private void Filter_Green(object sender, RoutedEventArgs e)
         {
-            bw.RunWorkerAsync();
+            //bw.RunWorkerAsync();
             FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterGreen(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
         private void Filter_Blue(object sender, RoutedEventArgs e)
         {
-            bw.RunWorkerAsync();
+            //bw.RunWorkerAsync();
             FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterBlue(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
  
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                progressbar.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate() { progressbar.Value++; }));
-                Thread.Sleep(100);
-            }
+            map = FilterHelper.filterRed(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source));
+            
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressbar.Value = e.ProgressPercentage;
         }
     }
 }
