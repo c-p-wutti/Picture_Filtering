@@ -18,6 +18,7 @@
                 <MenuItem Header="Red" Click="Filter_Red"></MenuItem>
                 <MenuItem Header="Green" Click="Filter_Green"></MenuItem>
                 <MenuItem Header="Blue" Click="Filter_Blue"></MenuItem>
+                <MenuItem Header="Median 5x5" Click="Filter_Median"></MenuItem>
             </MenuItem>
 
         </Menu>

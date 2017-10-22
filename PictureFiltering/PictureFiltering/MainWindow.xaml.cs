@@ -60,30 +60,31 @@ namespace PictureFiltering
 
         private void Filter_Red(object sender, RoutedEventArgs e)
         {
-            //bw.RunWorkerAsync();
             FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterRed(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
 
         private void Filter_Green(object sender, RoutedEventArgs e)
         {
-            //bw.RunWorkerAsync();
             FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterGreen(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
         private void Filter_Blue(object sender, RoutedEventArgs e)
         {
-            //bw.RunWorkerAsync();
             FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.filterBlue(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
  
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             map = FilterHelper.filterRed(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source));
-            
         }
 
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressbar.Value = e.ProgressPercentage;
+        }
+
+        private void Filter_Median(object sender, RoutedEventArgs e)
+        {
+            FilteredPic.Source = FileHelper.getBitmapSourceFromBitmap(FilterHelper.medianFilter(FileHelper.getBitmapFromBitmapSource((BitmapSource)SourcePic.Source)));
         }
     }
 }
